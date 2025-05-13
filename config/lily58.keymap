@@ -34,7 +34,7 @@
         PASSWD1: PASSWD1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp W &kp I &kp N &kp AT &kp LS(S) &kp U &kp M &kp M &kp E &kp R &kp N2 &kp N0 &kp N2 &kp N4>;
+            bindings = <&kp W &kp I &kp N &kp AT &kp LS(S) &kp P &kp R &kp I &kp N &kp G &kp N2 &kp N0 &kp N2 &kp N5>;
             label = "PASSWD1";
         };
 
