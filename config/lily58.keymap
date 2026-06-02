@@ -45,13 +45,6 @@
             label = "PASSWD2";
         };
 
-        NUMBER: NUMBER {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp N4 &kp N0 &kp N8 &kp N8 &kp N3 &kp N9 &kp N9 &kp N8 &kp N4 &kp N9>;
-            label = "NUMBER";
-        };
-
         BUILD: BUILD {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -100,29 +93,6 @@
             label = "UNCOMMENT";
         };
 
-        CONDBRK: CONDBRK {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp LEFT_ALT>,
-                <&macro_tap>,
-                <&kp F9>,
-                <&macro_release>,
-                <&kp LEFT_ALT>,
-                <&macro_tap>,
-                <&kp LS(C)>;
-
-            label = "CONDBRK";
-        };
-
-        GTINST: GTINST {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp G &kp T &kp I &kp N &kp S &kp T &kp A &kp L &kp L &kp SPACE &kp MINUS &kp V &kp N2 &kp N0 &kp N2 &kp N7 &kp SPACE &kp MINUS &kp I &kp S &kp COLON &kp A &kp L &kp L &kp UNDER &kp N &kp O &kp UNDER &kp T &kp E &kp D>;
-            label = "GTINST";
-        };
-
         NUMBER_UNLOCK: NUMBER_UNLOCK {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -137,10 +107,17 @@
                 <&kp LEFT_ALT>,
                 <&macro_release>,
                 <&kp LEFT_CONTROL>,
-                <&macro_wait_time 500>,
+                <&macro_wait_time 1000>,
                 <&kp N1 &kp N8 &kp N0 &kp N6 &kp N9 &kp N1>;
 
             label = "NUMBER_UNLOCK";
+        };
+
+        VSPYTHON: VSPYTHON {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp W &kp RETURN &kp LC(F5)>;
+            label = "VSPYTHON";
         };
     };
 
@@ -175,11 +152,11 @@
             //                     |      |      |      |        |  |       |       |       |       |
 
             bindings = <
-&kp F1       &kp F2  &kp F3  &kp F4    &kp F5  &kp F6                    &kp F7               &kp F8      &kp F9  &kp F10  &kp F11   &kp F12
-&trans       &trans  &trans  &trans    &trans  &trans                    &trans               &UNCOMMENT  &trans  &trans   &trans    &trans
-&trans       &trans  &trans  &trans    &trans  &trans                    &trans               &trans      &trans  &trans   &trans    &trans
-&bootloader  &trans  &trans  &COMMENT  &trans  &BUILD  &trans    &trans  &kp LC(PAUSE_BREAK)  &trans      &trans  &trans   &kp PIPE  &bootloader
-                             &trans    &trans  &trans  &trans    &trans  &trans               &trans      &trans
+&kp F1  &kp F2      &kp F3  &kp F4          &kp F5     &kp F6                                    &kp F7               &kp F8      &kp F9             &kp F10     &kp F11   &kp F12
+&trans  &kp LA(F4)  &trans  &trans          &VSPYTHON  &trans                                    &trans               &UNCOMMENT  &kp LA(LS(LC(I)))  &trans      &PASSWD1  &trans
+&trans  &PASSWD2    &trans  &kp LS(LC(F9))  &trans     &GTMAIL                                   &kp LS(LC(F3))       &trans      &trans             &kp LC(F3)  &trans    &bootloader
+&trans  &trans      &trans  &COMMENT        &trans     &BUILD   &NUMBER_UNLOCK    &kp LS(LC(B))  &kp LC(PAUSE_BREAK)  &GMAIL      &trans             &trans      &kp PIPE  &trans
+                            &trans          &trans     &trans   &trans            &trans         &trans               &trans      &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -194,11 +171,11 @@
             //                     |      |      |       |        |  |       |       |       |       |
 
             bindings = <
-&kp TILDE  &trans      &trans        &trans        &trans        &trans                           &trans      &trans    &trans  &trans     &NUMBER_UNLOCK  &kp PLUS
-&trans     &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans                           &trans      &trans    &trans  &trans     &PASSWD1        &trans
-&trans     &trans      &trans        &trans        &trans        &trans                           &kp LEFT    &kp DOWN  &kp UP  &kp RIGHT  &trans          &trans
-&trans     &trans      &trans        &trans        &trans        &kp LC(LS(B))  &trans    &trans  &kp LS(F5)  &trans    &trans  &trans     &kp BSLH        &sys_reset
-                                     &trans        &trans        &trans         &trans    &trans  &trans      &trans    &trans
+&kp TILDE  &trans      &trans        &trans        &trans        &trans                            &trans      &trans    &trans  &trans     &trans    &kp PLUS
+&trans     &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &trans                            &trans      &trans    &trans  &trans     &trans    &trans
+&trans     &trans      &trans        &trans        &trans        &trans                            &kp LEFT    &kp DOWN  &kp UP  &kp RIGHT  &trans    &sys_reset
+&trans     &trans      &trans        &trans        &trans        &trans  &kp PAGE_UP    &kp PG_DN  &kp LS(F5)  &trans    &trans  &trans     &kp BSLH  &trans
+                                     &trans        &trans        &trans  &trans         &trans     &trans      &trans    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -213,11 +190,11 @@
             //                     |      |      |      |        |  |        |       |       |       |
 
             bindings = <
-&kp GRAVE  &trans  &trans  &trans          &kp LA(F4)  &trans                           &trans          &trans   &trans   &trans      &trans    &kp EQUAL
-&trans     &trans  &trans  &trans          &trans      &trans                           &trans          &UCMAIL  &GTINST  &trans      &PASSWD2  &trans
-&trans     &trans  &trans  &kp LC(LS(F9))  &trans      &GTMAIL                          &kp LC(LS(F3))  &trans   &trans   &kp LC(F3)  &trans    &trans
-&trans     &trans  &trans  &CONDBRK        &trans      &trans   &kp PG_UP    &kp PG_DN  &NUMBER         &GMAIL   &trans   &trans      &trans    &trans
-                           &trans          &trans      &trans   &trans       &trans     &trans          &trans   &trans
+&kp GRAVE  &kp LS(LG(N1))  &kp LS(LG(N2))  &kp LS(LG(N3))  &kp LG(LS(N4))  &kp LG(LS(N5))                                                     &kp LG(LS(N6))  &kp LG(LS(N7))  &kp LG(LS(N8))  &kp LG(LS(N9))  &kp LG(LS(N0))  &kp EQUAL
+&trans     &trans          &trans          &trans          &trans          &trans                                                             &trans          &trans          &trans          &trans          &trans          &trans
+&trans     &trans          &trans          &trans          &trans          &trans                                                             &trans          &trans          &trans          &trans          &trans          &trans
+&trans     &trans          &trans          &trans          &trans          &trans          &kp LC(LA(LEFT_ARROW))    &kp LC(LA(RIGHT_ARROW))  &trans          &trans          &trans          &trans          &trans          &trans
+                                           &trans          &trans          &trans          &trans                    &trans                   &trans          &trans          &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
